@@ -1,3 +1,22 @@
+function validaNotas(notas){
+    notas.sort(function(a, b) {
+        return a - b;
+    });
+    notas.pop();
+    notas.shift();
+    return notas;
+}
+
+function somarNotas(notas){
+    return notas.reduce((total, nota)=>{
+        return total + nota;
+    },0)
+}
+
+function calculaMedia(notas){
+    return somarNotas(validaNotas(notas))/notas.length;
+}
+
 //--------------------------------------------------------------
 
 let atletas = [
@@ -20,31 +39,11 @@ let atletas = [
 ];
 //----------------------------------------------------------------
 
-function validaNotas(notas){
-    notas.sort(function(a, b) {
-        return a - b;
-    });
-    notas.pop();
-    notas.shift();
-    return notas;
-}
-
-function somarNotas(notas){
-    return notas.reduce((total, nota)=>{
-        return total + nota;
-    },0)
-}
-
-function calculaMedia(notas){
-    return somarNotas(validaNotas(notas))/notas.length;
-}
-
 for (let i = 0; i < atletas.length; i++) {
     
     console.log(`Atleta: ${atletas[i].nome}`);
     console.log(`Notas Obtidas: ${atletas[i].notas.join(", ")}`);
-    console.log(`Média Válida ${calculaMedia(atletas[i].notas)}`);
-    console.log(" ");
-    
+    console.log(`Média Válida ${calculaMedia(atletas[i].notas).toFixed(2)}`);
+    console.log(" ");   
 }
 
